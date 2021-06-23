@@ -1,0 +1,80 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    <style>
+        div {
+            border: 0px solid black;
+        }
+        
+        .card-img-top {
+            width: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+        }
+
+        .badge_nombre {
+            width: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <h1 class="row justify-content-center">Detalle de Usuario</h1>
+    {% if usuario_detalle %} 
+
+        <div class="container">
+        <div class="row justify-content-center ">            
+            <div class="col-sm-12 col-md-12 ">
+                {% if usuario_detalle.imagen_avatar %}
+                    <img src="{{usuario_detalle.imagen_avatar}}" class="card-img-top " alt="..."  style="width: 4rem;">
+                {% else %}
+                    <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" class="card-img-top " alt="..."  style="width: 4rem;">
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-12 my-2">
+                <span class="badge_nombre badge bg-warning text-dark">{{usuario_detalle.nombre|capfirst}}</span>
+            </div>
+        </div>
+    </div>
+    
+
+    <h3 class="row justify-content-md-center text-info">Ranking</h3>
+    {% if ranking_detalle  %}
+
+        <ol class="list-group list-group my-4">
+            {% for e in ranking_detalle %}
+            <li class="list-group-item">  <span class="badge rounded-pill bg-primary">{{e.ranking_valor}} °</span>  {{e.fruta}}</li>           
+            {% endfor %}            
+        </ol>
+
+    {% else %}
+        no hay elementos que mostrar        
+    {% endif %}
+
+
+    <h3 class="row justify-content-md-center text-info">No probados</h3>
+    {% if faltantes_detalle  %}
+
+        <ul class="list-group my-4 ">
+            {% for e in faltantes_detalle %}
+            <li class="list-group-item">{{e.fruta}}</li>                   
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        no hay elementos disponibles
+    {% endif %}
+
+
+
+
+
+    {% else %}
+        <p>No user are available.</p>
+    {% endif %} 
+
+{% endblock %}

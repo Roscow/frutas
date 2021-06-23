@@ -1,0 +1,65 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    <style> 
+        .list-group-item:hover{
+            box-shadow: 0px 0px 5px 1px black;
+        }
+
+    </style>
+    {% if user.is_authenticated %}
+        <h1 class="row justify-content-md-center">Mi lista de no probados</h1>
+        {% if faltantes  %}
+
+                <ul class="list-group my-4 list-group">
+                    {% for e in faltantes%}
+                    <li class="list-group-item my-1 d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{e.fruta|capfirst}}</div>
+                        </div>
+                        <form post-form" action="" method="POST">
+                            {% csrf_token %}   
+                            <input type="hidden" id="custId" name="id_fruta" value="{{e.id}}"> 
+                            <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}"> 
+                            <button type="submit" class="btn btn-outline-danger">quitar</button>
+                        </form>                       
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+<!-- 
+            <ul class="list-group my-4 ">    
+                {% for e in faltantes%}
+                    <div class="row">
+                        
+                            <li class="list-group-item">
+                                <div class="col-8">
+                                    <input class="form-check-input me-1" type="checkbox" value="{{e.fruta}}" aria-label="...">{{e.fruta}}
+                                </div>
+
+                                <div class="col-4">
+                                    <a href="">quitar</a>
+                                </div>
+                            </li>  
+                        
+                        
+                    </div>
+                {% endfor %}
+            </ul>
+            <p >las frutas seleccionadas se eliminaran de la lista</p>
+            <button type="button" class="btn btn-warning mb-4">Guardar cambios</button>
+ -->
+
+        {% else %}
+            Parece que has probado todas las frutas que hay disponibles<br>
+
+            <ol class="list-group list-group my-4">            
+                <li class="list-group-item"> agrega frutas nuevas <a href="{% url 'frutas1:agregar_fruta' %}"><span class="badge bg-info text-dark">aca</span> </a> </li>
+            </ol>
+
+        {% endif %}
+    {% else %}
+        debe estar conectado para ver esta opcion
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,193 @@
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>frutas</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        div {
+            border: 0px solid black;
+        }
+        
+        .img_avatar_prof {
+            width: 60px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+        }
+        .img_avatar_prof:hover {
+            box-shadow: 0px 0px 5px 1px black;
+        }
+
+        .badge_nombre {
+            width: 200px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .badge_cerrar_session {
+            width: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary row">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'frutas1:index' %}">Frutas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav">                
+                <li class="nav-item">               
+                {% if user.is_authenticated %}    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="{% url 'frutas1:perfil_usuario' %}"><img class="img_avatar_prof" src="{{usuario_conectado.imagen_avatar}}" alt="" width="50"></a>                            
+                        </div>
+
+                        <div class="col-sm-12">
+                            <p class="text-warning badge_nombre">                                 
+                                {% if perfil_revisar %}
+                                    <span class="badge bg-warning text-dark">{{cuenta_alertas}}</span> 
+                                {% endif %}
+                                {{ usuario_conectado.nombre|capfirst }}  is in da house!!</p> 
+                        </div>
+
+                        <div class="col-sm-12">
+                            <a href="{% url 'logout' %}"><span class="badge bg-danger badge_cerrar_session">cerrar sesion</span></a>
+                        </div>
+                        
+                    </div>
+
+                {% else %}
+                    <!-- <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" alt="" width="50" > -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <img class="img_avatar_prof" src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" alt="" width="50">
+                        </div>
+
+                        <div class="col-sm-12">
+                            <p class="text-warning badge_nombre"> inicie sesion para ver más</p> 
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="row justify-content-center">
+                                <div class="col-2">
+                                    <a href="{% provider_login_url 'google' %}"><span class="badge bg-warning text-dark">con google</span> </a>
+                                </div>
+
+                                <div class="col-2">
+                                    <a href="{% provider_login_url 'github' %}"><span class="badge bg-warning text-dark">con github</span> </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                {% endif %}
+                </li>
+                {% if user.is_authenticated %}
+                <div class="row">
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:ranking' %}">Ranking</a></li>
+                    </div>
+
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:faltantes' %}">Faltantes</a></li>
+                    </div>
+        
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:versus' %}">Versus</a></li>
+                    </div>                    
+                </div>  
+                {% endif %}
+                <div class="row">
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:mostrar_usuarios' 1 %}">Usuarios</a></li>
+                    </div>
+
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:frutas' 1 %}">Frutas</a></li>
+                    </div>
+        
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a></li>
+                    </div>                    
+                </div>     
+            </ul>
+
+            
+            </div>
+
+            {% if user.is_superuser %}
+            <ul class="navbar-nav"> 
+                <div class="row">
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link"<a class="nav-link" href="{% url 'frutas1:administracion_frutas' %}">admin. frutas</a> <span class="badge bg-info ">{{frutas_por_revisar}}</span>  </li>
+                    </div>
+
+                    <div class="col-4">
+                        <li class="nav-item"><a class="nav-link"<a class="nav-link" href="{% url 'frutas1:frutas' 1 %}">admin. users</a> <span class="badge bg-info ">9</span> </li>
+                    </div>
+        
+                    <!-- <div class="col-4">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a></li>
+                    </div>    -->                 
+                </div>
+            </ul>
+            {% endif %}
+        </div>
+    </nav>
+
+
+
+
+    {% block contenido %}
+    {% endblock %}
+
+    <footer>
+
+        <ul class="nav justify-content-center navbar-dark bg-primary row">
+            <a class="navbar-brand col-sm-12 col-md-4 col-lg-3"  href="{% url 'frutas1:proyecto' %} ">
+            <!--   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX_S4m_-8zcMr66LaPS8QUyRA9ct3igMDXZQ&usqp=CAU" alt="" width="50" height="44"> -->
+            Sobre el proyecto
+            </a>
+
+            <a class="navbar-brand col-sm-12 col-md-4 col-lg-3" href="https://github.com/Roscow/frutas" target="_blank">
+            <!--   <img src="https://img.icons8.com/small/452/github.png" alt="" width="50" height="44"> -->
+            Repositorio github
+            </a>
+
+            <a class="navbar-brand col-sm-12 col-md-4 col-lg-3" href="https://api.whatsapp.com/send?phone=56977619761" target="_blank">
+            <!--  <img src="https://img.icons8.com/pastel-glyph/2x/whatsapp--v2.png" alt="" width="50" height="44"> -->
+            Contacto de whatsapp
+            </a>
+
+            <a class="navbar-brand col-sm-12 col-md-4 col-lg-3" href="#" target="_blank">
+            <!--    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAhFBMVEUAAAD////l5eXk5OTw8PD29vbs7Oz6+vr09PT7+/vx8fFmZmbq6uqoqKhCQkI/Pz+goKCPj4/e3t7Q0NCbm5t0dHRpaWm/v782NjaLi4sXFxd8fHxvb2/FxcXX19cuLi5ZWVlKSkpNTU22tratra0dHR0ODg6Dg4MlJSWMjIwxMTFfX18CR/qrAAAJJUlEQVR4nO1dbXeiPBAlIS+EplpFq8+2unbtbru7////PUGxAuaF6qQBNvcLp3NozD2BmcnNJCQIIYoxpuqaYpwhtpr9XSfDxPruvz2jDDNFJsc4VReRJjWGmOCHoZI749tsTtsMeYpTXjJ8Ct07IDznimF6Ykgpp4ywjKP70B0DxAJlhDDKFbdEDebxsX0J3StQfJflQ5mmEimGmKg/tqG7BI5CMcTK6VRjOD6CSbKpxlC9h1k+RoIlRUrVe1j6Uhy6L54gT9ECjcvJnPF+YjimMNHErGSoUrXQ/fCIbelLyVgyGR12tIwWoXvhFXOUZA+hO+EVbyhBw59NWEESFroLnlEkq9Bd8IxFMgvdBc9YJn9Dd8EzXpKRO5rkV+gORERERERERPQQ6+e3xcP94ulH6I74wW5PEWJMCqQuq2Xo7oBjuSWHdao0Pa41suw1dJdAMcUlrfSwikOOC1dckv9CdwsOi+ywwIgPy6vkuPjIMSbbb6F7BoQNqR7NBkM1lEJMQvcNBNuMsYxzzhgj6pKrKy8XH5V1HBQ3We3lU5fjcJ5eSfY9dP9uxoI0X75jVcPHA4sHr9ZNsoYDvRjDFO1Dd/FGSE4zQkhGKVWXXF1ydaXHPw9WMQ3dx5uwbAxc25cerHITupM3Yat9+ZqvZDbkJdZdI1U75TRp2rDKIedv+4ZP0XsahGjobt4A2n75tA8sGq5y/sfoXpoMh7v68Yx0qdpFAseHu4L1xswvX81K0tAdvRoLZn75alaSh+7o1XiQ3caQh+7o1bgXrVTNkMDJ0B29GotuvpQPt/TvyfLy1axiuL70hzlVq1vRgItyukULOmDxdIW7RAv6M3Q/r8cTc88PsSxCd/MWZFWqRvVa28E65Ic0SV6le/Y05MmTAnNHi7fQfbwNv4lrDAdfoboV+lTtZBWDl4S/CWH1pYN2M0eshS0eLkJ3DwITiY1a2ygIJsl3ZvA0fASPaIW9kJpogcdUuzndZLKZqlE68Dh4gZdXrhiWkYILRGkxyp0of2erNOdyu7pfDng2ERERERERERERERERERHRG7yv12OSgBr49fQ650hkWVaWB7y+jYzoz4ciY6RWTSZZnm98C0LTTBIhBJFSqgtVF6qu6nKyms63QZp76y2w9rrqY6EoaRcOVjufDCeC5c1lUcq5UJeT1cSwfi/RtECaJSpLrBgZFmEJn3scyKmrUkEaCjGYa2F1Xrt5Jy/uxY09SCh99snQWqlgZ2hZWK0xXHFXyQ7HpPC0eQV0DLF2DJ+ldN1bWjHyU209QY66NmF4D8/bFfSVcR+nxO2RsV6uZaVbH6uxE5o66toMDMV5MHT+EePKlxasYcXa4aysknh4GyfUValgZGgvNDpW4bxL2amE9bQHycOC5ceuIGNdm4mhsG9iOIzhlOCGFTfuFToreJXgVP9odvU07Uez6UvfU83OTcfDnUPvs/IaLea6dlPtr52tFJiizzHcSOtoGa2w7+IUWeraSmtuYEgcmxjE9o0a96barbAVLqdoYU6/XNFCnyioaKGzptp7G1aRYvIHlKGnaHGTFXKDh78xvNYqgDeuTpEhpTpZTScv5s5NDJ+xthM4Dnc0hxdfakjKPmHFcBsg/MXD26wErJpn6tpD6pg9WTYx2K3GBE5WIwvFsOVLNQmHxdNck7J0tkKdOwIeLcAYQg2iv/nhrVaoueKE61K1WkplYkg7pF/NdoXQ6HLmFgjQNg9Yrc2UlJUy8LwotlVA75jAvYMx9B0tGNm/VQrM7pWQDtHi+AkSmDmGP63t/ELNGqeMPs5JxwRurv/lT8Kb1nayis3FUUy/ed4prYPZrAPnS/XplzY3+TOXunvbLRCQkw48z574Tv/fhXS/vpiBvIjetLaj1UDweKiKVmurWTGI7ubVl1o+W/BTun0pAjnBCYahPv2StjG4y9wJHIJi6EdrQ5xZz6JeSWcLQAw9aW2cC7ujeOfOFkA+IAOg0xjSL5w5jhPfIJPWdrJmdyAMfUUL6VKT/iJXvAFi6EtrY05dF+lStfMYYpgxdGpt9FqtDTn33RTcocAJGIY3+VKbfub87VdXCwiKoZ+I794hPXNFfDCGfrQ299xnpkvVKq0tBWPoeZXbzpB9jS+9mqFdP7ueYeonWnirxbAztCtwMAyPWhsB19o6SGWz3KHWUfBoAaq1dfU0lsXSnkeLjgy/Jlr4rWuzM7SpdTDRwntdm4Uhdah1vF++9KJSwc2Q2VsIHg+HEvG91rU5GErHYinQ7ElbItjdl+rPQ8Of8KWaFvKjtUfRQpfAfS5a6LW2HswP7bWJn2Ko09pgGLZTtVYCR66ua+vA0KW1gXoaaK2tk6cZtNbWn2jhrzbRzVDqUrXBaG0dDq6diWFrbVdm3gPS2no1exq71kbs6Zdpd5492bvOl7b6EDpaRK2tC8NQWpvooLVZ9pBmhz2kUWv7t7U2b7OnqLXV4dLasmFobV0y76i1WRlGrQ2AoVNrY+PV2tKotWkTrT5rbUKrtYmuWls7gevE8DLZUy2IL9Ha0qi1DShaRK1tjFrbLZl31NouGX7N7ClqbTp419qkuniIFnC7ZMevtXVj+EVam1C5GWNSNNOvytpJa1P3qkRLXqe1mVrwoLVp06+v0dr0O0tjtOjM8J/U2vIPKzdpbZm6qZFo5fUW8k9obbm+BWCtrZ15R61tQLOnf0xr0yRwX6u1ST9amzX9ilpb77W2iWrncDLz4VIeAsjPf5YXU7TgrXvF8UI/rO7TV2aXLdB6Cwg9AjD89nhnx6PhaFjX/93tnL+9djXxCHP2R0RERERERERERIR3jOw7LhpATLD6jHUCdQhoX/GYQB9S3zcsEpDzwHqMVUIvDi0cF1DCZqH74BVLlGCYEzL7ikKNIfX2HaUe4AcXCUJ56G54xBaliqGHb9P0BU9IHBgiHx9R6gN+iZJhnueZ+9CtYaKgeU4TjFOCgA7G7hn2BGOposVhxWwTujcecH9cxUmq5cvxUdxXNXClp6HlaqMcl7v5VZBqYTU5L82NKX17EhRXhUY1hmi7C90xILxsPzZ7K4aHb5+yw7dPGZ2DfdkkIJYFR0LkihQXgsuTp2FVRSrZLJYvjsNv+4v13WKFWtW2/wMp0tYAIhTKiAAAAABJRU5ErkJggg==" alt="" width="50" height="44"> -->
+            Pagina de linkedin
+            </a>
+
+        </ul>
+    </footer>
+</div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

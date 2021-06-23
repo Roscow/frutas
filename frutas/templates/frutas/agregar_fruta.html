@@ -1,0 +1,71 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido%}
+    <h1 class="row justify-content-md-center my-2">Nueva Fruta</h1>
+
+
+
+        <form class="my-4 post-form" action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}     
+
+            <select name="sabor" class="form-select form-control form-select-md mb-3" aria-label=".form-select-lg example" required>
+                <option value="" selected>Seleccione Sabor </option>
+                {% for s in list_sabores %}                
+                    <option value="{{s.id}}">{{s.nombre}}</option> 
+                {% endfor %}
+            </select>
+
+            <select name="color" class="form-select form-control form-select-md mb-3" aria-label=".form-select-lg example" required>
+                <option value="" selected>Seleccione Color </option>
+                {% for c in list_colores %}                
+                    <option value="{{c.id}}" >{{c.color}}</option> 
+                {% endfor %}
+
+            </select>
+
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </form> 
+
+
+
+
+        <!-- <form class="my-4" action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre de la fruta</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">                
+                            
+                
+
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">url de la imagen</label>
+                <input type="txt" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">       
+                <div id="emailHelp" class="form-text"> recomendamos buscar en  https://unsplash.com/t/</div>          
+            </div>
+
+            <div class="form-floating my-4">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Descripcion</label>
+            </div>
+
+            <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+                <option selected>Seleccione Sabor </option>
+                {% for s in list_sabores %}                
+                    <option value="1">{{s.nombre}}</option> 
+                {% endfor %}
+            </select>
+
+            <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+                <option selected>Seleccione Color </option>
+                {% for s in list_colores %}                
+                    <option value="1">{{s.color}}</option> 
+                {% endfor %}
+
+            </select>
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+        </form> -->
+
+{% endblock %}

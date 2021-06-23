@@ -1,0 +1,32 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    {% if user.is_authenticated %}
+        <h1 class="row justify-content-md-center">Mi ranking</h1>
+        {% if ranking  %}
+
+            <ol class="list-group list-group my-4">
+                {% for e in ranking%}
+                <li class="list-group-item">  <span class="badge rounded-pill bg-primary">{{e.ranking_valor}} °</span>  {{e.fruta|capfirst}}</li>           
+                {% endfor %}
+                <li class="list-group-item"> sigue actualizando tu ranking en  <a href="{% url 'frutas1:versus' %}"><span class="badge bg-info text-dark">Versus</span></a> 
+                    o agrega frutas nuevas <a href="{% url 'frutas1:agregar_fruta' %}"><span class="badge bg-info text-dark">aca</span> </a> 
+                </li>
+            </ol>
+
+
+        {% else %}
+            no hay elementos que mostrar
+            <ol class="list-group list-group my-4">            
+                <li class="list-group-item"> actualiza tu ranking en     <a href="{% url 'frutas1:versus' %}"><span class="badge bg-info text-dark">Versus</span></a> 
+                    o agrega frutas nuevas <a href="{% url 'frutas1:agregar_fruta' %}"><span class="badge bg-info text-dark">aca</span> </a> 
+                </li>
+            </ol>
+
+        {% endif %}
+    {% else %}
+            debe estar conectado para ver esta opcion
+    {% endif %}
+
+
+{% endblock %}

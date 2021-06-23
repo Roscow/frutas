@@ -1,0 +1,42 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    <style> 
+        .card:hover{
+            box-shadow: 0px 0px 5px 1px black;
+        }
+
+    </style>
+
+
+
+    <h1 class="row justify-content-md-center">Ultimos usuarios creados </h1>
+    {% if usuarios %} 
+    <div class="row justify-content-md-center mb-4">
+
+        {% for u in usuarios %}
+            <!-- <div class="card col-sm-12 col-md-3 my-2 mx-1"> -->
+                <div class="card my-2 mx-2"  style="width: 10rem;" >
+                    <a href="{% url 'frutas1:usuario_detalle' u.id %}">
+                        {% if u.imagen_avatar %}
+                            <img src="{{u.imagen_avatar}}" class="card-img-top" alt="..." width="50">
+                        {% else %}
+                            <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" class="card-img-top" alt="..." width="50">                        
+                        {% endif %}                            
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{u.nombre}}</h5>
+                        <p class="card-text"> {{u.nombre}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">se unio en : {{u.fecha_creacion}}</small>
+                    </div>                                        
+                </div>           
+        {% endfor %}
+        <h6 class="row justify-content-md-center"><a href="{% url 'frutas1:mostrar_usuarios' 1 %}"> todos los usuarios</a></h6>
+    </div>
+    {% else %}
+        <p>No user are available.</p>
+    {% endif %} 
+
+{% endblock %}

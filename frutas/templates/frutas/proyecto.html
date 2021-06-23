@@ -1,0 +1,134 @@
+{% extends "frutas/base.html" %}
+
+
+{% block contenido %}
+    <h1 class="my-4"> Herramientas usadas en el proyecto </h1>
+    <div class="">
+
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Gestor de base de datos</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Mysql</h5>
+            <p class="card-text">Para la persistencia de los datos se construyo una base de datos utilizando mysql 
+                y los modelos relacionales, durante la construccion se realizaron backups utilizando mysqldump para 
+                migrar desde el ambiente de desarrollo al de produccion, se crearon triggers, procedimientos, funciones  y eventos
+                que se desarrollan de forma automatica en el servidor, se realizo la configuracion tanto en ambientes 
+                linux y windows. y se usaron herramientas como el worksbrench para acceder de forma remota al servidor.
+                creacion de las tablas, alteracion , actualizacion e insercion de datos.
+                <ul>
+                    <li>Triggers</li>
+                    <li>Funciones</li>
+                    <li>Procedimientos</li>
+                    <li>Eventos</li>
+                    <li>Backups</li>
+                    <li>Uso de worbrench</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+
+        
+        <div class="card border-primary mb-3">
+            <div class="card-header">Lenguaje de programacion</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Python</h5>
+            <p class="card-text">construccion de clases, variables, atributos y metodos</p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Framework Backend</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Django</h5>
+            <p class="card-text">Framework para la construccion del contenido web
+                <ul>
+                    <li>Migracion desde base de datos a models</li>
+                    <li>Instalacion de paquetes</li>
+                    <li>Uso de bloques</li>
+                    <li>Uso de imagens con pillow</li>
+                    <li>Uso de bloques</li>
+                </ul>
+
+            </p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Servidor </div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Amazon web service aws</h5>
+            <p class="card-text">Para albergar el sistema se utilizaron los "amazon web services" aws, utilizando herramientas 
+                como putty o conexion a traves de terminal linux para acceder de forma remota, se realizo la configuracion de ip y de usuarios,instalacion
+                de sistema operativo y instalacion de aplicaciones               
+            </p>
+            
+            </p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Sistema opearativo</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Ubuntu server</h5>
+            <p class="card-text">
+                <ul>
+                    <li>Creacion de archivos</li>
+                    <li>Navegacion de ficheros</li>
+                    <li>Instalacion de aplicaciones</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Sistema control de versiones</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Git</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Apis</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Social auth google y github</h5>
+            <p class="card-text">
+                <ul>
+                    <li>Autenticacion de usuario con Api de google</li>
+                    <li>Autenticacion de usuario con Api de github</li>
+                </ul>
+            </p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Apache</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Apache</h5>
+            <p class="card-text">Para servir el contenido web</p>
+            </div>
+        </div>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Frontend </div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Bootstrap</h5>
+            <p class="card-text">
+                para mejorar el diseño y la interfaz de usuario             
+            </p>
+            
+            </p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+            
+
+
+
+
+{% endblock %}

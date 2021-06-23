@@ -1,0 +1,67 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    <style> 
+        .card:hover{
+            box-shadow: 0px 0px 5px 1px black;
+        }
+
+    </style>
+
+
+
+    <h1 class="row justify-content-md-center">Ultimos usuarios creados </h1>
+    {% if lista_usuarios %} 
+    <div class="row justify-content-md-center mb-4">
+
+        {% for u in lista_usuarios %}
+            <!-- <div class="card col-sm-12 col-md-3 my-2 mx-1"> -->
+                <div class="card my-2 mx-2"  style="width: 10rem;" >
+                    <a href="{% url 'frutas1:usuario_detalle' u.id %}">
+                        {% if u.imagen_avatar %}
+                            <img src="{{u.imagen_avatar}}" class="card-img-top" alt="..." width="50">
+                        {% else %}
+                            <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" class="card-img-top" alt="..." width="50">                        
+                        {% endif %} 
+                        
+                    </a>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{u.nombre|capfirst}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">se unio en : {{u.fecha_creacion}}</small>
+                    </div>                                        
+                </div>           
+        {% endfor %}        
+    </div>
+
+    <div class="row">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page|stringformat:"s" == '1' %}
+                    <li class="page-item disabled "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" >Previous</a></li>
+                {% else %}
+                    <li class="page-item "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" >Previous</a></li>
+                {% endif %}               
+                {% for i in list_num_paginas %}        
+                        <li class="page-item {% if page|stringformat:"s" == i|stringformat:"s"  %} active {% endif %}    "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' i %}">{{i}}</a></li>                                  
+                {% endfor %}  
+                
+                {% if page == num_paginas %}
+                    <li class="page-item disabled"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}">Next</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}">Next</a></li>
+                {% endif %}
+                
+                
+            </ul>
+        </nav>
+    </div>
+
+
+    {% else %}
+        <p>No user are available.</p>
+    {% endif %} 
+
+{% endblock %}

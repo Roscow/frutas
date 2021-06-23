@@ -1,0 +1,55 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+        <style> 
+            .card:hover{
+                box-shadow: 0px 0px 5px 1px black;
+            }
+
+        </style>
+    <h1 class="row justify-content-md-center">Echale un vistazo a las frutas</h1>
+    
+    {% if user.is_superuser%}
+        {% if frutas %}
+            <div class="row ">
+                {% for f in frutas %}
+                    <div class="card  col-sm-12 col-md-6 col-lg-3 my-2  g-4"  >
+                        <img src="{{f.imagen}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{f.nombre|capfirst}}</h5>
+                            <p class="card-text">{{f.descripcion}}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Sabor <span class="badge rounded-pill bg-info text-dark">{{f.sabor}}</li>
+                                <li class="list-group-item">Color principal <span class="badge rounded-pill bg-info text-dark">{{f.color_principal}}</span> </li>
+
+                                <div class="row">
+                                    <form class="my-4 col-4 post-form" action="" method="POST">
+                                        {% csrf_token %}   
+                                        <input type="hidden" id="custId" name="id_fruta" value="{{f.id}}"> 
+                                        <input type="hidden" id="custId" name="accion" value="publicar">                                                      
+                                        <button type="submit" class="btn btn-warning">Publicar</button>
+                                    </form> 
+    
+                                    <form class="my-4 col-4 post-form" action="" method="POST">
+                                        {% csrf_token %}   
+                                        <input type="hidden" id="custId" name="id_fruta" value="{{f.id}}">  
+                                        <input type="hidden" id="custId" name="accion" value="eliminar">                                                      
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form> 
+                                </div>
+                            </ul>
+                        </div>
+                {% endfor %}
+                
+            </div>
+        {% else %}
+            <p>No fruits are available.</p>
+        {% endif %} 
+    {% else %}
+            usted no tiene permiso para ver esta seccion
+    {% endif %}
+    
+
+
+{% endblock %}

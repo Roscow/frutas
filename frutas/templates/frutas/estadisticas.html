@@ -1,0 +1,286 @@
+{% extends "frutas/base.html" %}
+{% load humanize %}
+
+{% block contenido %}
+    <h1 class="row justify-content-center">Estadisticas sobre frutas</h1>
+
+        <div class="accordion accordion-flush " id="accordionFlushExample">
+
+
+            <div class="accordion-item ">
+                <h2 class="accordion-header " id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Estadisticas Globales
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        {% for e in estadistica_glob_obj %}   
+
+                        <h3 class="row justify-content-md-center text-info my-4">Favoritos</h3>
+                        
+                            <div class="row justify-content-center">
+                                {{e.ranking1|capfirst}}
+                            </div>
+
+                            <div class="progress mb-4">
+                                <div class="progress-bar" role="progressbar" style="width: {{e.porcentaje_ranking1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking1|intword}}%</div>
+                            </div>
+                            
+                    
+                            <div class="row justify-content-center">
+                                {{e.ranking2|capfirst}}
+                            </div>
+
+                            <div class="progress mb-4">
+                                <div class="progress-bar" role="progressbar" style="width:{{e.porcentaje_ranking2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking2|intword}}%</div>
+                            </div>     
+                                    
+                            <div class="row justify-content-center">
+                                {{e.ranking3|capfirst}}
+                            </div>
+                            <div class="progress mb-4">
+                                <div class="progress-bar" role="progressbar" style="width: {{e.porcentaje_ranking3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking3|intword}}%</div>
+                            </div>
+                
+                            <h3 class="row justify-content-md-center text-info my-4">Menos deseados</h3>
+                            
+                                <div class="row justify-content-center">
+                                    {{e.ranking_neg1|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{e.porcentaje_ranking_neg1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking_neg1|intword}}%</div>
+                                </div>                        
+                    
+                                <div class="row justify-content-center">
+                                    {{e.ranking_neg2|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width:{{e.porcentaje_ranking_neg2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking_neg2|intword}}%</div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    {{e.ranking_neg3|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{e.porcentaje_ranking_neg3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_ranking_neg3|intword}}%</div>
+                                </div>
+
+                            <h3 class="row justify-content-md-center text-info my-4">No probados</h3>
+
+                                <div class="row justify-content-center">
+                                    {{e.no_probado1|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: {{e.porcentaje_no_probado1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_no_probado1|intword}}%</div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    {{e.no_probado2|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning text-dark" role="progressbar" style="width:{{e.porcentaje_no_probado2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_no_probado2|intword}}%</div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    {{e.no_probado3|capfirst}}
+                                </div>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning text-dark" role="progressbar" style="width: {{e.porcentaje_no_probado3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{e.porcentaje_no_probado3|intword}}%</div>
+                                </div>                            
+                            
+                            <span class="badge text-dark my-4">ultima actualizacion: {{e.fecha_calculo}}</span>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Estadisticas por Genero
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <!-- contenido de estadisticas por genero -->
+
+                        {% for h in estadistica_gen_masculino_obj %}   
+                            {% for m in estadistica_gen_femenino_obj %}
+                
+                                <h3 class="row justify-content-md-center text-info my-4">Favoritos</h3>
+                              
+                                    <h6 class="row justify-content-md-center text-info my-4">Mujeres</h6>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_ranking1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width:{{m.porcentaje_ranking2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_ranking3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking3|intword}}%</div>
+                                        </div>
+
+                                    <h6 class="row justify-content-md-center text-info my-4">Hombres</h6>
+
+                                        <div class="row justify-content-center">
+                                            {{h.ranking1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_ranking1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.ranking2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width:{{h.porcentaje_ranking2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.ranking3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_ranking3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking3|intword}}%</div>
+                                        </div>
+
+                            
+
+                                <h3 class="row justify-content-md-center text-info my-4">Menos deseados</h3>
+                                    <h6 class="row justify-content-md-center text-info my-4">Mujeres</h6>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking_neg1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_ranking_neg1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking_neg1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking_neg2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width:{{m.porcentaje_ranking_neg2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking_neg2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.ranking_neg3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_ranking_neg3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_ranking_neg3|intword}}%</div>
+                                        </div>
+    
+                                    <h6 class="row justify-content-md-center text-info my-4">Hombres</h6>
+    
+                                        <div class="row justify-content-center">
+                                            {{h.ranking_neg1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_ranking_neg1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking_neg1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.ranking_neg2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width:{{h.porcentaje_ranking_neg2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking_neg2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.ranking_neg3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_ranking_neg3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_ranking_neg3|intword}}%</div>
+                                        </div>
+
+                                <h3 class="row justify-content-md-center text-info my-4">No probado</h3>
+                                    <h6 class="row justify-content-md-center text-info my-4">Mujeres</h6>
+                                        <div class="row justify-content-center">
+                                            {{m.no_probado1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_no_probado1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_no_probado1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.no_probado2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width:{{m.porcentaje_no_probado2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_no_probado2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{m.no_probado3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar" role="progressbar" style="width: {{m.porcentaje_no_probado3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{m.porcentaje_no_probado3|intword}}%</div>
+                                        </div>
+        
+                                    <h6 class="row justify-content-md-center text-info my-4">Hombres</h6>
+        
+                                        <div class="row justify-content-center">
+                                            {{h.no_probado1|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_no_probado1}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_no_probado1|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.no_probado2|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width:{{h.porcentaje_no_probado2}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_no_probado2|intword}}%</div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            {{h.no_probado3|capfirst}}
+                                        </div>
+                                        <div class="progress mb-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{h.porcentaje_no_probado3}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{h.porcentaje_no_probado3|intword}}%</div>
+                                        </div>
+
+
+
+
+                            {% endfor %}
+                            <span class="badge text-dark my-4">ultima actualizacion: {{h.fecha_calculo}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Estadisticas por Region
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Esta opcion no esta disponible aun.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Estadisticas por Region y Genero
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        Esta opcion no esta disponible aun.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+{% endblock %}

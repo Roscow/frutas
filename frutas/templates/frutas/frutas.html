@@ -1,0 +1,49 @@
+{% extends "frutas/base.html" %}
+
+{% block contenido %}
+    <h1 class="row justify-content-md-center">Echale un vistazo a las frutas</h1>
+    
+    {% if frutas %}
+        <div class="row ">
+            {% for f in frutas %}
+                <div class="card  col-sm-12 col-md-6 col-lg-3 my-2  g-4"  >
+                    <img src="{{f.imagen}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{f.nombre|capfirst}}</h5>
+                        <p class="card-text">{{f.descripcion}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Sabor <span class="badge rounded-pill bg-info text-dark">{{f.sabor}}</li>
+                            <li class="list-group-item">Color principal <span class="badge rounded-pill bg-info text-dark">{{f.color_principal}}</span> </li>
+                        </ul>
+                    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No fruits are available.</p>
+    {% endif %} 
+    <a href="{% url 'frutas1:agregar_fruta' %}"><button type="button" class="btn btn-outline-secondary">Agrega frutas nuevas </button></a>
+    
+    <div class="row my-4">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page|stringformat:"s" == '1' %}
+                    <li class="page-item disabled "><a class="page-link" href="{% url 'frutas1:frutas' prev_pag %}" tabindex="-1" >Previous</a></li>
+                {% else %}
+                    <li class="page-item "><a class="page-link" href="{% url 'frutas1:frutas' prev_pag %}" tabindex="-1" >Previous</a></li>
+                {% endif %}               
+                {% for i in list_num_paginas %}        
+                        <li class="page-item  {% if page|stringformat:"s" == i|stringformat:"s"  %} active {% endif %}   "><a class="page-link" href="{% url 'frutas1:frutas' i %}">{{i}}</a></li>                                  
+                {% endfor %}  
+                
+                {% if page == num_paginas %}
+                    <li class="page-item disabled"><a class="page-link" href="{% url 'frutas1:frutas' next_pag %}">Next</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{% url 'frutas1:frutas' next_pag %}">Next</a></li>
+                {% endif %}                                
+            </ul>
+        </nav>
+    </div>
+
+
+{% endblock %}
