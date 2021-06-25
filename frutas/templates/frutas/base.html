@@ -64,7 +64,7 @@
                         <div class="col-sm-12">
                             <p class="text-warning badge_nombre">                                 
                                 {% if perfil_revisar %}
-                                    <span class="badge bg-warning text-dark">{{cuenta_alertas}}</span> 
+                                    <span class="badge bg-warning text-dark"><a href="{% url 'frutas1:perfil_usuario' %}">{{cuenta_alertas}}</a></span> 
                                 {% endif %}
                                 {{ usuario_conectado.nombre|capfirst }}  is in da house!!</p> 
                         </div>
