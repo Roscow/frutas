@@ -213,13 +213,15 @@ def administracion_frutas(request):
 
             if(request.POST.get('accion')== 'publicar'):
                 fruta_aux= Fruta.objects.get(id=id_aux)
-                estado_fruta_aux = EstadoFruta.objects.get(id=3)
+                estado_fruta_aux = EstadoFruta.objects.get(titulo__icontains='aprobado')
                 fruta_aux.estado_fruta=estado_fruta_aux
                 fruta_aux.save()
 
             return HttpResponseRedirect('/administracion_frutas/')
-        else:            
-            frutas = Fruta.objects.filter(estado_fruta__in=[1,2,4])       
+        else:       
+            lista_estados_noaprobados = EstadoFruta.objects.all().exclude(nombre__icontains='aprobado')     
+            #frutas = Fruta.objects.filter(estado_fruta__in=[1,2,4]) 
+            frutas = Fruta.objects.filter(estado_fruta__in=lista_estados_noaprobados) 
             context= {'frutas':frutas}
             return render(request,'frutas/administracion_frutas.html',context)
     except Fruta.DoesNotExist:
