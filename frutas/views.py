@@ -213,7 +213,7 @@ def administracion_frutas(request):
 
             if(request.POST.get('accion')== 'publicar'):
                 fruta_aux= Fruta.objects.get(id=id_aux)
-                estado_fruta_aux = EstadoFruta.objects.get(titulo__icontains='aprobado')
+                estado_fruta_aux = EstadoFruta.objects.get(nombre__icontains='aprobado')
                 fruta_aux.estado_fruta=estado_fruta_aux
                 fruta_aux.save()
 
