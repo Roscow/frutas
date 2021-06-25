@@ -27,9 +27,9 @@ SECRET_KEY = os.getenv('secret_key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('db_option')
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['frutas.company','www.frutas.company']
 
 
 # Application definition
@@ -146,7 +146,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = '/srv/frutas_site/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -182,7 +182,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-SITE_ID = 3
+SITE_ID = 6
 
 
 LOGIN_REDIRECT_URL = '/'
