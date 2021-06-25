@@ -112,7 +112,8 @@ def versus(request):
 
     user_id= request.user.id
     #ver si existen comparaciones por realizar 
-    list_frutas_validas= Fruta.objects.all().filter(estado_fruta=3)
+    estado_object = EstadoFruta.objects.get(nombre__icontains='aprobado')
+    list_frutas_validas= Fruta.objects.all().filter(estado_fruta=estado_object)
         #verificar en esta lista que no hayan valores que el usuario no haya probado
     for f in list_frutas_validas:
         pref_bool = PreferenciasFrutas.objects.filter(usuario=user_id, fruta=f.id).exists()
