@@ -29,7 +29,7 @@ def agregar_fruta(request):
         imagen_get=request.POST.get('imagen')
         color_object =  Color.objects.get(id=request.POST.get('color'))   
         sabor_object = Sabor.objects.get(id=request.POST.get('sabor'))   
-        estado_fruta_object= EstadoFruta.objects.get(id=1)
+        estado_fruta_object= EstadoFruta.objects.get(nombre__icontains='enviado')
         Fruta.objects.create(nombre =nombre_get , color_principal =color_object , sabor= sabor_object, estado_fruta=estado_fruta_object , descripcion =descripcion_get ,imagen=imagen_get)
         form = create_fruta(request.POST)
         if form.is_valid():
