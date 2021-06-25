@@ -13,75 +13,81 @@
                 }
 
             </style>
+    <div class="container">
 
-            <div class="row my-4 ">
-                <div class="card my-2  g-4 "  style="width: 18rem;">
+    
+        <div class="row my-4 ">
+
+            <div class=" col-5 col-lg-3 card my-2  g-4 "  style="width: 33%;">
+                <form post-form" action="" method="POST">
+                    {% csrf_token %}   
+                    <input type="hidden" id="custId" name="fruta1" value="{{fruta1_obj.id}}">
+                    <input type="hidden" id="custId" name="fruta2" value="{{fruta2_obj.id}}"> 
+                    <input type="hidden" id="custId" name="eleccion" value="{{fruta1_obj.id}}">  
+                    <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
+                    <input type="hidden" id="custId" name="accion" value="preferencia">                             
+                    <input  class="card-img-top" type="image" name="botondeenvio" src="{{fruta1_obj.imagen}}" alt="Enviar formulario">
+                </form>
+                <!-- <a href=""><img src="{{fruta1_obj.imagen}}" class="card-img-top" alt="..."></a>  -->
+                <div class="card-body">                                  
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{fruta1_obj.nombre|capfirst}} </li>
+                        <li class="list-group-item">
+                            <form post-form" action="" method="POST">
+                                {% csrf_token %}   
+                                <input type="hidden" id="custId" name="id_fruta" value="{{fruta1_obj.id}}"> 
+                                <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
+                                <input type="hidden" id="custId" name="accion" value="sinprobar">
+                                {% if ranking_f1 %}
+                                {% else %}
+                                    <button type="submit" class="btn btn-outline-danger">No probado</button>
+                                {% endif %}
+                            </form>                             
+                        </li>  
+                    </ul>
+                </div> 
+
+            <div class="col-2 col-lg-3 ">
+                <h3 class="row justify-content-md-center justify-content-center">VS</h3>
+            </div>
+
+                <div class="col-5 col-lg-3 card  my-2  g-4"  style="width: 33%;" >
                     <form post-form" action="" method="POST">
                         {% csrf_token %}   
                         <input type="hidden" id="custId" name="fruta1" value="{{fruta1_obj.id}}">
                         <input type="hidden" id="custId" name="fruta2" value="{{fruta2_obj.id}}"> 
-                        <input type="hidden" id="custId" name="eleccion" value="{{fruta1_obj.id}}">  
+                        <input type="hidden" id="custId" name="eleccion" value="{{fruta2_obj.id}}"> 
                         <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
                         <input type="hidden" id="custId" name="accion" value="preferencia">                             
-                        <input  class="card-img-top" type="image" name="botondeenvio" src="{{fruta1_obj.imagen}}" alt="Enviar formulario">
+                        <input  class="card-img-top" type="image" name="botondeenvio" src="{{fruta2_obj.imagen}}" alt="Enviar formulario">
                     </form>
-                    <!-- <a href=""><img src="{{fruta1_obj.imagen}}" class="card-img-top" alt="..."></a>  -->
-                    <div class="card-body">                                  
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{fruta1_obj.nombre|capfirst}} </li>
-                            <li class="list-group-item">
-                                <form post-form" action="" method="POST">
-                                    {% csrf_token %}   
-                                    <input type="hidden" id="custId" name="id_fruta" value="{{fruta1_obj.id}}"> 
-                                    <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
-                                    <input type="hidden" id="custId" name="accion" value="sinprobar">
-                                    {% if ranking_f1 %}
-                                    {% else %}
-                                        <button type="submit" class="btn btn-outline-danger">No la he probado</button>
-                                    {% endif %}
-                                </form>                             
-                            </li>  
-                        </ul>
-                    </div> 
-                <div class="col-sm-12 col-md-2 ">
-                    <h3 class="row justify-content-md-center justify-content-center">VS</h3>
-                </div>
 
-                    <div class="card  my-2  g-4"  style="width: 18rem;" >
-                        <form post-form" action="" method="POST">
-                            {% csrf_token %}   
-                            <input type="hidden" id="custId" name="fruta1" value="{{fruta1_obj.id}}">
-                            <input type="hidden" id="custId" name="fruta2" value="{{fruta2_obj.id}}"> 
-                            <input type="hidden" id="custId" name="eleccion" value="{{fruta2_obj.id}}"> 
-                            <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
-                            <input type="hidden" id="custId" name="accion" value="preferencia">                             
-                            <input  class="card-img-top" type="image" name="botondeenvio" src="{{fruta2_obj.imagen}}" alt="Enviar formulario">
-                        </form>
-
-                        <!-- <a href=""><img src="{{fruta2_obj.imagen}}" class="card-img-top" alt="..."></a> --> 
-                        <div class="card-body">
-                            <h5 class="card-title">{{f.nombre}}</h5>                       
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{fruta2_obj.nombre|capfirst}} </li>
-                            <!-- <li class="list-group-item"> <a href=""><span class="badge rounded-pill bg-info text-dark">no he probado esta fruta</span></a> </li> -->
-                            <!-- <li class="list-group-item"> <a href="">no la he probado</a> </li> -->
-                            <li class="list-group-item">
-                                <form post-form" action="" method="POST">
-                                    {% csrf_token %}   
-                                    <input type="hidden" id="custId" name="id_fruta" value="{{fruta2_obj.id}}"> 
-                                    <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
-                                    <input type="hidden" id="custId" name="accion" value="sinprobar">
-                                    {% if ranking_f2 %}
-                                    {% else %}
-                                    <button type="submit" class="btn btn-outline-danger">No la he probado</button>
-                                    {% endif %}
-                                </form>                             
-                            </li>                           
-                        </ul>
+                    <!-- <a href=""><img src="{{fruta2_obj.imagen}}" class="card-img-top" alt="..."></a> --> 
+                    <div class="card-body">
+                        <h5 class="card-title">{{f.nombre}}</h5>                       
                     </div>
-            </div>     
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{fruta2_obj.nombre|capfirst}} </li>
+                        <!-- <li class="list-group-item"> <a href=""><span class="badge rounded-pill bg-info text-dark">no he probado esta fruta</span></a> </li> -->
+                        <!-- <li class="list-group-item"> <a href="">no la he probado</a> </li> -->
+                        <li class="list-group-item">
+                            <form post-form" action="" method="POST">
+                                {% csrf_token %}   
+                                <input type="hidden" id="custId" name="id_fruta" value="{{fruta2_obj.id}}"> 
+                                <input type="hidden" id="custId" name="id_usuario" value="{{usuario_conectado.id}}">  
+                                <input type="hidden" id="custId" name="accion" value="sinprobar">
+                                {% if ranking_f2 %}
+                                {% else %}
+                                <button type="submit" class="btn btn-outline-danger">No probado</button>
+                                {% endif %}
+                            </form>                             
+                        </li>                           
+                    </ul>
+                </div>
+        </div>     
+    
+    </div>
         {% else %} 
             UPS! parace que ya comparaste todas las frutas, intenta nuevamente
         {% endif %}
