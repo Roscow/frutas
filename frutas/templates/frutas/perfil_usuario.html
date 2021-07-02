@@ -59,9 +59,47 @@
             </select>
 
             <button type="submit" class="btn btn-warning">Guardar</button>
+            <!-- Button trigger modal -->
+            <button type="button"  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Borrar cuenta
+            </button>
         </form> 
 
     {% else %}
         no hay usuario conectado
     {% endif %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Borrar cuenta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">      
+        Se borraran todos los datos de la cuenta para siempre, esta accion no se puede deshacer.<br> ¿desea continuar?
+      </div>
+      <div class="modal-footer">
+             <form class="my-4 post-form" action="" method="POST">
+                {% csrf_token %}                  
+                <input type="hidden"  name="id_usuario" value="{{usuario_conectado.id}}">  
+                <input type="hidden"  name="accion" value="eliminar_usuario">
+               
+                    <button type="submit" class="btn btn-outline-danger">Borrar cuenta</button>             
+            </form>        
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 {% endblock %}
+
+
+

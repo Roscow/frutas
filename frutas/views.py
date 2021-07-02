@@ -3,9 +3,11 @@ from django.core.exceptions import EmptyResultSet
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Color, ComparacionFrutas, EstadisticaGenero, EstadisticaGlobal, Genero, LogFrutas, Region, Usuario , Fruta, PreferenciasFrutas, Sabor, EstadoFruta
+from .models import Color, ComparacionFrutas, EstadisticaGenero, EstadisticaGlobal, Genero, LogFrutas, Region, Usuario , Fruta, PreferenciasFrutas, Sabor, EstadoFruta, LogUsuarios, UltimaPreferencia
+from django.contrib.auth.models import User
 import math
 import random
+from django.urls import reverse
 from .forms import create_fruta
 from django.utils import timezone
 import pymysql
@@ -14,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Create your views here.
+
 
 
 def index(request):
@@ -230,16 +233,46 @@ def administracion_frutas(request):
 
 
 def perfil_usuario(request):
-    if request.method == 'POST':
-        usuario_obj = Usuario.objects.get(id=request.user.id)
-        if (request.POST.get('region') != ''):
-            region_obj = Region.objects.get(id = request.POST.get('region'))
-            usuario_obj.region = region_obj
-        if (request.POST.get('genero') != ''):
-            genero_obj = Genero.objects.get(id = request.POST.get('genero'))
-            usuario_obj.genero = genero_obj
-        usuario_obj.nombre= request.POST.get('nombre')
-        usuario_obj.save()
+    if request.method == 'POST':        
+        if(request.POST.get('accion')=='eliminar_usuario' ):
+                usuario_obj2 = Usuario.objects.get(id = request.POST.get('id_usuario') )
+                #borrar log usuario
+                log_usuario_obj= LogUsuarios.objects.filter(usuario_emisor=usuario_obj2)
+                for lu in log_usuario_obj:
+                    lu.delete()  
+
+                #borrar comparaciones 
+                comparaciones_usuario_obj = ComparacionFrutas.objects.filter(usuario=usuario_obj2)
+                for cu in comparaciones_usuario_obj:
+                    cu.delete()
+
+                #borrar ultima preferencia
+                ultimapref_usuario_obj = UltimaPreferencia.objects.filter(usuario=usuario_obj2)
+                for up in ultimapref_usuario_obj:
+                    up.delete() 
+                
+                #borrar preferencias usuarios 
+                pref_usuario_obj = PreferenciasFrutas.objects.filter(usuario=usuario_obj2)
+                for pu in pref_usuario_obj:
+                    pu.delete() 
+
+                #borrar usuario
+                usuario_obj2.delete()  
+                #cerrar sesion 
+                #eliminar cuenta
+                #redirigir a inicio
+                return HttpResponseRedirect('/frutas/1/')            
+                #return HttpResponseRedirect(reverse{% url 'logout' %}"
+        else:
+            usuario_obj = Usuario.objects.get(id=request.user.id)
+            if (request.POST.get('region') != ''):
+                region_obj = Region.objects.get(id = request.POST.get('region'))
+                usuario_obj.region = region_obj
+            if (request.POST.get('genero') != ''):
+                genero_obj = Genero.objects.get(id = request.POST.get('genero'))
+                usuario_obj.genero = genero_obj
+            usuario_obj.nombre= request.POST.get('nombre')
+            usuario_obj.save()
         
     regiones_list = Region.objects.all().order_by('nombre')
     genero_list = Genero.objects.all()
