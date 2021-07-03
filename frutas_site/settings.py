@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('secret_key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('debug_option')
 
 ALLOWED_HOSTS = ['*']
 
@@ -182,7 +182,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-SITE_ID = 4
+SITE_ID = os.getenv('id_site')
 
 
 LOGIN_REDIRECT_URL = '/'
