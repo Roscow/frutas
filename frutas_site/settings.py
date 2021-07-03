@@ -27,7 +27,11 @@ SECRET_KEY = os.getenv('secret_key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = False
+=======
+DEBUG = os.getenv('debug_option')
+>>>>>>> 340e9d22b8f3ce4f01cf1eaa93b66468d51c615f
 
 ALLOWED_HOSTS = ['frutas.company','www.frutas.company']
 
@@ -182,7 +186,11 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
+<<<<<<< HEAD
 SITE_ID = 6
+=======
+SITE_ID = os.getenv('id_site')
+>>>>>>> 340e9d22b8f3ce4f01cf1eaa93b66468d51c615f
 
 
 LOGIN_REDIRECT_URL = '/'
