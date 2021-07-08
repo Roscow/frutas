@@ -1,134 +1,156 @@
-{% extends "frutas/base.html" %}
 
+{% extends "frutas/base.html" %}
+{% load static %}
 
 {% block contenido %}
-    <h1 class="my-4"> Herramientas usadas en el proyecto </h1>
-    <div class="">
+    <h1 class="row justify-content-md-center my-4 "> Herramientas usadas en el proyecto </h1>
 
-
-        <div class="card border-primary mb-3">
-            <div class="card-header">Gestor de base de datos</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Mysql</h5>
-            <p class="card-text">Para la persistencia de los datos se construyo una base de datos utilizando mysql 
-                y los modelos relacionales, durante la construccion se realizaron backups utilizando mysqldump para 
-                migrar desde el ambiente de desarrollo al de produccion, se crearon triggers, procedimientos, funciones  y eventos
-                que se desarrollan de forma automatica en el servidor, se realizo la configuracion tanto en ambientes 
-                linux y windows. y se usaron herramientas como el worksbrench para acceder de forma remota al servidor.
-                creacion de las tablas, alteracion , actualizacion e insercion de datos.
-                <ul>
-                    <li>Triggers</li>
-                    <li>Funciones</li>
-                    <li>Procedimientos</li>
-                    <li>Eventos</li>
-                    <li>Backups</li>
-                    <li>Uso de worbrench</li>
-                </ul>
-            </p>
+    <div class="container">
+        <div class="row justify-content-md-center mb-4"> 
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-python" role="button" aria-expanded="false" aria-controls="collapse-python"><img class="img-herramienta" src="{% static 'img/python.png' %}" ></a>
+               
             </div>
-        </div>
 
-        
-        <div class="card border-primary mb-3">
-            <div class="card-header">Lenguaje de programacion</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Python</h5>
-            <p class="card-text">construccion de clases, variables, atributos y metodos</p>
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-django" role="button" aria-expanded="false" aria-controls="collapse-django"><img class="img-herramienta" src="{% static 'img/django.jpg' %}" ></a>
+               
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Framework Backend</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Django</h5>
-            <p class="card-text">Framework para la construccion del contenido web
-                <ul>
-                    <li>Migracion desde base de datos a models</li>
-                    <li>Instalacion de paquetes</li>
-                    <li>Uso de bloques</li>
-                    <li>Uso de imagens con pillow</li>
-                    <li>Uso de bloques</li>
-                </ul>
-
-            </p>
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-aws" role="button" aria-expanded="false" aria-controls="collapse-aws"><img class="img-herramienta" src="{% static 'img/aws.png' %}" ></a>
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Servidor </div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Amazon web service aws</h5>
-            <p class="card-text">Para albergar el sistema se utilizaron los "amazon web services" aws, utilizando herramientas 
-                como putty o conexion a traves de terminal linux para acceder de forma remota, se realizo la configuracion de ip y de usuarios,instalacion
-                de sistema operativo y instalacion de aplicaciones               
-            </p>
-            
-            </p>
+            <div class="col-sm-4 col-md-2 my-2">
+                 <a data-bs-toggle="collapse" href="#collapse-bootstrap" role="button" aria-expanded="false" aria-controls="collapse-bootstrap"><img class="img-herramienta" src="{% static 'img/bootstrap.svg' %}" ></a>
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Sistema opearativo</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Ubuntu server</h5>
-            <p class="card-text">
-                <ul>
-                    <li>Creacion de archivos</li>
-                    <li>Navegacion de ficheros</li>
-                    <li>Instalacion de aplicaciones</li>
-                </ul>
-            </p>
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-mysql" role="button" aria-expanded="false" aria-controls="collapse-mysql"><img class="img-herramienta" src="{% static 'img/mysql.png' %}" ></a>
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Sistema control de versiones</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Git</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+             <div class="col-sm-4 col-md-2 my-2">
+                 <a data-bs-toggle="collapse" href="#collapse-ubuntu" role="button" aria-expanded="false" aria-controls="collapse-ubuntu"><img class="img-herramienta" src="{% static 'img/ubuntu-linux.jpg' %}" ></a>
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Apis</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Social auth google y github</h5>
-            <p class="card-text">
-                <ul>
-                    <li>Autenticacion de usuario con Api de google</li>
-                    <li>Autenticacion de usuario con Api de github</li>
-                </ul>
-            </p>
+             <div class="col-sm-4 col-md-2 my-2">
+                 <a data-bs-toggle="collapse" href="#collapse-nginx" role="button" aria-expanded="false" aria-controls="collapse-nginx"><img class="img-herramienta" src="{% static 'img/nginx.webp' %}" ></a>
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Apache</div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Apache</h5>
-            <p class="card-text">Para servir el contenido web</p>
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-git" role="button" aria-expanded="false" aria-controls="collapse-git"> <img class="img-herramienta" src="{% static 'img/git.png' %}" > </a>      
             </div>
-        </div>
 
-        <div class="card border-primary mb-3">
-            <div class="card-header">Frontend </div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Bootstrap</h5>
-            <p class="card-text">
-                para mejorar el diseño y la interfaz de usuario             
-            </p>
-            
-            </p>
+            <div class="col-sm-4 col-md-2 my-2">
+                <a data-bs-toggle="collapse" href="#collapse-apis" role="button" aria-expanded="false" aria-controls="collapse-apis"><img class="img-herramienta" src="{% static 'img/apis.png' %}" >  </a>         
             </div>
+
+
+            <div class="collapse" id="collapse-python">
+                <div class="card card-body">
+                    <h4>Python</h4>
+                    <ul>
+                        <li>Listas </li>
+                        <li>Funciones randint</li> 
+                        <li>Manejo de cadenas</li>                   
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-django">
+                 <div class="card card-body">
+                    <h4>Django</h4>
+                    <ul>
+                        <li>Inspectordb para migracion de bd a modelos  </li>
+                        <li>Instalacion de componentes pip</li> 
+                        <li>Uso de bloques </li>      
+                        <li>Elementos estaticos </li>                   
+                        <li>Manejo de imagenes con pillow </li>   
+                        <li>Manejo de datos con ORM  </li>   
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-mysql">
+                <div class="card card-body">
+                    <h4>Mysql</h4>
+                    <ul>
+                        <li>Modelamiento de datos </li>
+                        <li>Construccion de tablas</li>
+                        <li>Triggers </li>
+                        <li>Procedimientos </li>
+                        <li>Funciones </li>
+                        <li>Eventos</li>
+                        <li>Consultas</li>
+                        <li>Backups</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-aws">
+               <div class="card card-body">
+                    <h4>AWS</h4>
+                    <ul>
+                        <li>Instalacion de paquetes </li>
+                        <li>Conexion remota con putty</li>  
+                        <li>Configuracion de IP elastica </li>                                    
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-ubuntu">
+                <div class="card card-body">
+                 <h4>Ubuntu server y Linux</h4>                    
+                    <ul>
+                        <li>Instalacion de aplicaciones </li>
+                        <li>Instalacion de entornos virtuales</li>     
+                        <li>Creacion de ficheros , carpetas</li>                        
+                        <li>Editor de texto Vim</li>                             
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-bootstrap">
+               <div class="card card-body">
+                 <h4>Bootstrap</h4>                    
+                    Manejo de elementos de frontend usanndo componentes de bootstrap como  rows , columns , navbar, collapse, buttons, etc.
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-nginx">
+            <div class="card card-body">
+                 <h4>Nginx</h4>                    
+                    <ul>
+                        <li>Configuracion con gunicorn </li>
+                        <li>Configuracion con supervisor</li>     
+                        <li>Balanceador de carga</li>                                                                          
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-apis">
+                 <div class="card card-body">
+                    <h4>APIs</h4>
+                    <ul>
+                        <li>Uso de Oauth para conexion de usuario con cuentas de google y github </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="collapse" id="collapse-git">
+               <div class="card card-body">
+                 <h4>Git y Github</h4>                    
+                    <ul>
+                        <li>Gestion de versiones </li>
+                        <li>Creacion de repositorios remotos</li>     
+                        <li>Uso de ramas </li>                        
+                        <li>Uso de forks </li>     
+                        <li>Pullrequest y merges </li>                             
+                    </ul>
+                </div>
+            </div>    
         </div>
 
     </div>
-
-
-
-            
-
-
-
 
 {% endblock %}
