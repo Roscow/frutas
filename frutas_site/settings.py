@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('secret_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('debug_option')
 
-ALLOWED_HOSTS = ['frutas.company','www.frutas.company']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition

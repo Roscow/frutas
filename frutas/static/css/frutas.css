@@ -1,0 +1,11 @@
+div{
+    border: 0px solid black;
+}
+
+
+.img-herramienta {
+    width: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

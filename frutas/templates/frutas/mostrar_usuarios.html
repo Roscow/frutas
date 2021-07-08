@@ -10,7 +10,7 @@
 
 
 
-    <h1 class="row justify-content-md-center">Ultimos usuarios creados </h1>
+    <h1 class="row justify-content-md-center">Ultimos usuarios creados</h1>
     {% if lista_usuarios %} 
     <div class="row justify-content-md-center mb-4">
 
@@ -40,18 +40,18 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 {% if page|stringformat:"s" == '1' %}
-                    <li class="page-item disabled "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" >Previous</a></li>
+                    <li class="page-item disabled "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" >  Anterior  </a></li>
                 {% else %}
-                    <li class="page-item "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" >Previous</a></li>
+                    <li class="page-item "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' prev_pag %}" tabindex="-1" > Anterior </a></li>
                 {% endif %}               
                 {% for i in list_num_paginas %}        
                         <li class="page-item {% if page|stringformat:"s" == i|stringformat:"s"  %} active {% endif %}    "><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' i %}">{{i}}</a></li>                                  
                 {% endfor %}  
                 
                 {% if page == num_paginas %}
-                    <li class="page-item disabled"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}">Next</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}"> Siguiente </a></li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="{% url 'frutas1:mostrar_usuarios' next_pag %}">  Siguiente </a></li>
                 {% endif %}
                 
                 

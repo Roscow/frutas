@@ -6,6 +6,5 @@ deployment/
 logs/
 media/
 run/
-static/
 settings.py
 frutas_site/__pycache__/
