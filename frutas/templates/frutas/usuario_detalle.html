@@ -47,7 +47,7 @@
 
         <ol class="list-group list-group my-4">
             {% for e in ranking_detalle %}
-            <li class="list-group-item">  <span class="badge rounded-pill bg-primary">{{e.ranking_valor}} °</span>  {{e.fruta}}</li>           
+            <li class="list-group-item">  <span class="badge rounded-pill bg-primary">{{e.ranking_valor}} °</span>  {{e.fruta|capfirst}}</li>           
             {% endfor %}            
         </ol>
 
@@ -61,7 +61,7 @@
 
         <ul class="list-group my-4 ">
             {% for e in faltantes_detalle %}
-            <li class="list-group-item">{{e.fruta}}</li>                   
+            <li class="list-group-item">{{e.fruta|capfirst}}</li>                   
             {% endfor %}
         </ul>
 
