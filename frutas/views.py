@@ -21,7 +21,7 @@ load_dotenv()
 
 def index(request):
     #return render(request,'frutas/base.html')
-    return render(request,'inicio.html')
+    return render(request,'frutas/inicio.html')
 
 
 def agregar_fruta(request):
