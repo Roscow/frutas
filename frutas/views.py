@@ -21,8 +21,7 @@ load_dotenv()
 
 def index(request):
     #return render(request,'frutas/base.html')
-    #return render(request,'frutas/frutas.html')
-    return HttpResponseRedirect('/frutas/1/')
+    return render(request,'inicio.html')
 
 
 def agregar_fruta(request):
@@ -161,14 +160,6 @@ def versus(request):
     context={'total_frutas_validas':total_frutas_validas,  'fruta1_obj':fruta1_obj, 'fruta2_obj':fruta2_obj, 'ranking_f1':ranking_f1, 'ranking_f2':ranking_f2 }
     return render(request,'frutas/versus.html',context)
         
-
-def usuarios_inicio(request):
-    try:
-        usuarios = Usuario.objects.all().order_by('-fecha_creacion')[:10]
-        context = {'usuarios':usuarios}
-        return render(request,'frutas/usuarios.html',context)
-    except Usuario.DoesNotExist:
-        return render(request,'frutas/usuarios.html',)
 
 
 def mostrar_usuarios(request, page):
