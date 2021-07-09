@@ -162,14 +162,6 @@ def versus(request):
     return render(request,'frutas/versus.html',context)
         
 
-def usuarios_inicio(request):
-    try:
-        usuarios = Usuario.objects.all().order_by('-fecha_creacion')[:10]
-        context = {'usuarios':usuarios}
-        return render(request,'frutas/usuarios.html',context)
-    except Usuario.DoesNotExist:
-        return render(request,'frutas/usuarios.html',)
-
 
 def mostrar_usuarios(request, page):
     num_datos = 10
