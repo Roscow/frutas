@@ -21,8 +21,7 @@ load_dotenv()
 
 def index(request):
     #return render(request,'frutas/base.html')
-    #return render(request,'frutas/frutas.html')
-    return HttpResponseRedirect('/frutas/1/')
+    return render(request,'inicio.html')
 
 
 def agregar_fruta(request):

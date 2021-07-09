@@ -1,0 +1,38 @@
+{% extends "frutas/base.html" %}
+{% load static %}
+
+{% block contenido %}
+    <div class="container">
+
+        <ul>
+            <li class="item-index">
+                <h3 class="index-title">DES<span class="txt-icon">&#x1F349;</span>UBRE</h3>
+                Descubre nuevas frutas y recetas o agrega frutas que no encuentres en nuestro sistema que seran parte del "versus" y de las estadisticas.
+            </li>
+
+            <li class="item-index">
+                <h3 class="index-title">C<span class="txt-icon">&#129373;</span>MPARA</h3>
+                Inicia sesion y compara frutas en las seccion "versus" para actualizar tu ranking y llevar el control de nuevas frutas que quizas aun no hayas probado. 
+            </li>
+
+            <li class="item-index">
+                <h3 class="index-title">COMU<span class="txt-icon">&#x1F34E;</span>IDAD</h3>
+                Unete a la comunidad, compara tus preferencias con otros usuarios y se parte  de las estadisticas... -"we want your data" <br>
+                {% comment %} <img  class="index-meme" src="{% static 'img/tio-sam.jpg' %}"> {% endcomment %}
+            </li>
+
+            <li class="item-index">
+                <h3 class="index-title">VISUA<span class="txt-icon">&#x1F34C;</span>IZA</h3>
+                En la pestaña de estadisticas podras visualizar algunas estadisticas interesantes sobre preferencias de frutas, ¿cuales seran las frutas preferidas? ¿las menos probadas? ¿las menos queridas?
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+
+   
+
+{% endblock%}
