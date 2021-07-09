@@ -22,8 +22,9 @@
     {% else %}
         <p>No fruits are available.</p>
     {% endif %} 
-    <a href="{% url 'frutas1:agregar_fruta' %}"><button type="button" class="btn btn-outline-secondary">Agrega frutas nuevas </button></a>
-    
+    {% if user.is_authenticated %}   
+        <a href="{% url 'frutas1:agregar_fruta' %}"><button type="button" class="btn btn-outline-secondary">Agrega frutas nuevas </button></a>
+    {% endif %}
     <div class="row my-4">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
