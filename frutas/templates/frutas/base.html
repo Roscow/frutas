@@ -3,278 +3,290 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    
-
-   
-   {% comment %}  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"> {% endcomment %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    
-
-
-
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Frutas Everywhere!</title>
-    
-    <link rel="shortcut icon" href="{% static 'img/f1.ico' %}">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    
-    <style>
-        div {
-            border: 0px solid black;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Frutas Everywhere!</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>        
+        <link rel="shortcut icon" href="{% static 'img/f1.ico' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         
-        .img_avatar_prof {
-            width: 60px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 50%;
-        }
-        .img_avatar_prof:hover {
-            box-shadow: 0px 0px 5px 1px black;
-        }
-
-        .badge_nombre {
-            width: 200px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .badge_cerrar_session {
-            width: 100px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        .footer-basic {
-            padding:40px 0;
-            background-color:#ffffff;
-            color:#4b4c4d;
-            }
-
-            .footer-basic ul {
-            padding:0;
-            list-style:none;
-            text-align:center;
-            font-size:18px;
-            line-height:1.6;
-            margin-bottom:0;
-            }
-
-            .footer-basic li {
-            padding:0 10px;
-            }
-
-            .footer-basic ul a {
-            color:inherit;
-            text-decoration:none;
-            opacity:0.8;
-            }
-
-            .footer-basic ul a:hover {
-            opacity:1;
-            }
-
-            .footer-basic .social {
-            text-align:center;
-            padding-bottom:25px;
-            }
-
-            .footer-basic .social > a {
-            font-size:24px;
-            width:40px;
-            height:40px;
-            line-height:40px;
-            display:inline-block;
-            text-align:center;
-            border-radius:50%;
-            border:1px solid #ccc;
-            margin:0 8px;
-            color:inherit;
-            opacity:0.75;
-            }
-
-            .footer-basic .social > a:hover {
-            opacity:0.9;
-            }
-
-            .footer-basic .copyright {
-            margin-top:15px;
-            text-align:center;
-            font-size:13px;
+        <style>
             
-            margin-bottom:0;
+            .img_avatar_prof {
+                width: 40px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 50%;
+            }
+            .img_avatar_prof:hover {
+                box-shadow: 0px 0px 5px 1px black;
             }
 
-            .text-gold{
-                color: #FCA205;               
-                font-weight: bold;
+            .img_avatar_prof2:hover {
+                box-shadow: 0px 0px 5px 1px black;
             }
 
-    </style>
-    <link rel="stylesheet" href="{% static 'css/frutas.css' %}">
-</head>
-<body>
-<div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary row">
-        <div class="container-fluid">
+            .badge_nombre {
+                width: 200px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .badge_cerrar_session {
+                width: 100px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .footer-basic {
+                padding:40px 0;
+                background-color:#ffffff;
+                color:#4b4c4d;
+                }
+
+                .footer-basic ul {
+                padding:0;
+                list-style:none;
+                text-align:center;
+                font-size:18px;
+                line-height:1.6;
+                margin-bottom:0;
+                }
+
+                .footer-basic li {
+                padding:0 10px;
+                }
+
+                .footer-basic ul a {
+                color:inherit;
+                text-decoration:none;
+                opacity:0.8;
+                }
+
+                .footer-basic ul a:hover {
+                opacity:1;
+                }
+
+                .footer-basic .social {
+                text-align:center;
+                padding-bottom:25px;
+                }
+
+                .footer-basic .social > a {
+                font-size:24px;
+                width:40px;
+                height:40px;
+                line-height:40px;
+                display:inline-block;
+                text-align:center;
+                border-radius:50%;
+                border:1px solid #ccc;
+                margin:0 8px;
+                color:inherit;
+                opacity:0.75;
+                }
+
+                .footer-basic .social > a:hover {
+                opacity:0.9;
+                }
+
+                .footer-basic .copyright {
+                margin-top:15px;
+                text-align:center;
+                font-size:13px;
+                
+                margin-bottom:0;
+                }
+
+                .text-gold{
+                    color: #FCA205;               
+                    font-weight: bold;
+                }
+
+                .text-gold2{
+                    color: #FCA205;               
+                    font-weight: bold;
+                    
+                }
+
+        </style>
+        <link rel="stylesheet" href="{% static 'css/frutas.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'frutas1:index' %}">
+                    <img  src="{% static 'img/f1.png' %}" alt="" width="50" height="44" class="d-inline-block align-text-top">  
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <div class="row nav-item">
+                            {% if user.is_authenticated %} 
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="row nav-item">
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:frutas' 1 %}">Frutas</a> 
+                                    </div>
         
-            <a class="navbar-brand" href="{% url 'frutas1:index' %}">
-                <img  src="{% static 'img/f1.png' %}" alt="" width="50" height="44" class="d-inline-block align-text-top">                
-            </a>
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:mostrar_usuarios' 1 %}">Usuario</a> 
+                                    </div>
+        
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a> 
+                                    </div>
+                                </div>
 
-
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-
-            <ul class="navbar-nav">                
-                <li class="nav-item">               
-                {% if user.is_authenticated %}    
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="{% url 'frutas1:perfil_usuario' %}"><img class="img_avatar_prof" src="{{usuario_conectado.imagen_avatar}}" alt="" width="50"></a>                            
-                        </div>
-
-                        <div class="col-sm-12">
-                            <p class="text-warning badge_nombre">                                 
-                                {% if perfil_revisar %}
-                                    <span class="badge bg-warning text-dark"><a href="{% url 'frutas1:perfil_usuario' %}">{{cuenta_alertas}}</a></span> 
-                                {% endif %}
-                                {{ usuario_conectado.nombre|capfirst }}  is in da house!!</p> 
-                        </div>
-
-                        <div class="col-sm-12">
-                            <a href="{% url 'logout' %}"><span class="badge bg-danger badge_cerrar_session">cerrar sesion</span></a>
+                            </div>
+                              
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="row nav-item">
+                                    
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:versus' %}">Versus</a> 
+                                    </div>
+        
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:ranking' %}">Ranking</a> 
+                                    </div>
+        
+                                    <div class="col-4">
+                                        <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:faltantes' %}">Faltantes</a> 
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                            {% else %}
+                                <div class="col-sm-12 col-lg-12">
+                                    <div class="row nav-item">
+                                        <div class="col-4">
+                                            <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:frutas' 1 %}">Frutas</a> 
+                                        </div>
+            
+                                        <div class="col-4">
+                                            <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:mostrar_usuarios' 1 %}">Usuario</a> 
+                                        </div>
+            
+                                        <div class="col-4">
+                                            <a class="nav-link text-light text-gold" aria-current="page" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                         
                     </div>
-
-                {% else %}
-                    <!-- <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" alt="" width="50" > -->
+<!-- 
                     <div class="row">
-                        <div class="col-sm-12">
-                            <img class="img_avatar_prof" src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" alt="" width="50">
+                        <div class="col-6">
+                            <a class="img_avatar_prof2 dropdown-toggle d-flex align-items-center hidden-arrow" href="{% url 'frutas1:perfil_usuario' %}" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false" >
+
+                                <button type="button" class="btn btn-primary text-gold">
+                                    {{usuario_conectado.nombre|capfirst}} <span class="badge bg-warning text-dark">{{cuenta_alertas}}</span>
+                                </button>
+                                <img src="{{usuario_conectado.imagen_avatar}}" class="rounded-circle" height="35" alt="" loading="lazy" />
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{% url 'logout' %}"><span class="badge bg-danger badge_cerrar_session">cerrar sesion</span></a>
+                        </div>
+                    </div> -->
+                    {% if user.is_authenticated %}    
+                        <!--  <a class="img_avatar_prof2 dropdown-toggle d-flex align-items-center hidden-arrow" href="{% url 'frutas1:perfil_usuario' %}" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false" >
+
+                            <button type="button" class="btn btn-primary text-gold">
+                                {{usuario_conectado.nombre|capfirst}} 
+                                {% if perfil_revisar %}
+                                    <span class="badge bg-warning text-dark">{{cuenta_alertas}}</span>
+                                {% endif %}
+                            </button>
+                            <img src="{{usuario_conectado.imagen_avatar}}" class="rounded-circle" height="35" alt="" loading="lazy" />
+                        </a>                        
+                        <button type="button" class="btn btn-info"><a href="{% url 'logout' %}"><i class="icon ion-social-github"></i></a></button>
+ -->
+                        <div>
+                            <a href="{% url 'frutas1:perfil_usuario' %}">
+                                <button type="button" class="btn btn-primary text-gold">
+                                    {{usuario_conectado.nombre|capfirst}} 
+                                    {% if perfil_revisar %}
+                                        <span class="badge bg-warning text-dark">{{cuenta_alertas}}</span>
+                                    {% endif %}
+                                </button>
+                            </a>
+                            <img src="{{usuario_conectado.imagen_avatar}}" class="rounded-circle" height="35" alt="" loading="lazy" />
+                            <a href="{% url 'frutas1:perfil_usuario' %}"><button type="button" class="btn btn-warning"><span class="iconify" data-icon="ant-design:setting-twotone" data-inline="false"></span></button></a>                        
+                            <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger"><span class="iconify" data-icon="ant-design:close-circle-twotone" data-inline="false"></span></button></a>  
                         </div>
 
-                        <div class="col-sm-12">
-                            <p class="text-warning badge_nombre"> inicie sesion para ver más</p> 
+
+                    {% else %}
+
+                        <div>
+                            <button type="button" class="btn btn-primary text-gold">
+                                inicie sesion                               
+                            </button>
+                            <img src="https://i.pinimg.com/236x/21/09/47/21094753857210805aa234b3ade8cc1d.jpg" class="rounded-circle" height="35" alt="" loading="lazy" />
+                            <a href="{% provider_login_url 'google' %}"><button type="button" class="btn btn-warning"><i class="icon ion-social-google"></i></button></a>
+                            <a href="{% provider_login_url 'github' %}"><button type="button" class="btn btn-warning"><i class="icon ion-social-github"></i></button></a>
                         </div>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </nav>
 
-                        <div class="col-sm-12">
-                            <div class="row justify-content-center">
-                                <div class="col-sm-3 col-md-2">
-                                    <a href="{% provider_login_url 'google' %}"><span class="badge bg-warning text-dark">con google</span> </a>
-                                </div>
 
-                                <div class="col-sm-3 col-md-2">
-                                    <a href="{% provider_login_url 'github' %}"><span class="badge bg-warning text-dark">con github</span> </a>
-                                </div>
-                            </div>
 
-                        </div>
-
-                    </div>
-                {% endif %}
-                </li>
-                {% if user.is_authenticated %}
-                <div class="row">
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:ranking' %}">Ranking</a></li>
-                    </div>
-
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:faltantes' %}">Faltantes</a></li>
-                    </div>
-        
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:versus' %}">Versus</a></li>
-                    </div>                    
-                </div>  
-                {% endif %}
-                <div class="row">
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:mostrar_usuarios' 1 %}">Usuarios</a></li>
-                    </div>
-
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:frutas' 1 %}">Frutas</a></li>
-                    </div>
-        
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a></li>
-                    </div>                    
-                </div>     
-            </ul>
+        <div class="container">
 
             
-            </div>
 
-            {% if user.is_superuser %}
-            <ul class="navbar-nav"> 
-                <div class="row">
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link"<a class="nav-link" href="{% url 'frutas1:administracion_frutas' %}">admin. frutas</a> <span class="badge bg-info ">{{frutas_por_revisar}}</span>  </li>
-                    </div>
-
-                    <div class="col-4">
-                        <li class="nav-item"><a class="nav-link"<a class="nav-link" href="{% url 'frutas1:frutas' 1 %}">admin. users</a> <span class="badge bg-info ">9</span> </li>
-                    </div>
+            {% block contenido %}
+            {% endblock %}
+                
         
-                    <!-- <div class="col-4">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'frutas1:estadisticas' %}">Estadisticas</a></li>
-                    </div>    -->                 
-                </div>
-            </ul>
-            {% endif %}
+           
         </div>
-    </nav>
-
-
-
-
-    {% block contenido %}
-    {% endblock %}
-        
-   
-    <div class="footer-basic bg-primary text-light">
-        <footer>
-            <div class="social">
-                <a href="#"><i class="icon ion-social-linkedin"></i></a>
-                <a href="https://api.whatsapp.com/send?phone=56977619761" target="_blank"><i class="icon ion-social-whatsapp"> </i></a>
-                <a href="#"><i class="icon ion-social-instagram"></i></a>
-                <a href="#"><i class="icon ion-social-youtube"></i></a>
-                <a href="https://github.com/Roscow" target="_blank"><i class="icon ion-social-github"></i></a>
-                <a href="#"><i class="icon ion-social-twitter"></i></a>
+         <div class="footer-basic bg-primary text-light">
+                <footer>
+                    <div class="social">
+                        <a href="#"><i class="icon ion-social-linkedin"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=56977619761" target="_blank"><i class="icon ion-social-whatsapp"> </i></a>
+                        <a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <a href="#"><i class="icon ion-social-youtube"></i></a>
+                        <a href="https://github.com/Roscow" target="_blank"><i class="icon ion-social-github"></i></a>
+                        <a href="#"><i class="icon ion-social-twitter"></i></a>
+                    </div>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="{% url 'frutas1:proyecto' %}">Sobre el proyecto</a></li>
+                        <li class="list-inline-item"><a href="https://github.com/Roscow/frutas" target="_blank">Repositorio</a></li>
+                        <li class="list-inline-item"><a href="#">Otros proyectos</a></li>               
+                    </ul>
+                    <p class="copyright text-gold">Frutas.company © 2021</p>
+                </footer>
             </div>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="{% url 'frutas1:proyecto' %}">Sobre el proyecto</a></li>
-                <li class="list-inline-item"><a href="https://github.com/Roscow/frutas" target="_blank">Repositorio</a></li>
-                <li class="list-inline-item"><a href="#">Otros proyectos</a></li>               
-            </ul>
-            <p class="copyright text-gold">Frutas.company © 2021</p>
-        </footer>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
 
-</div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-</body>
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    </body>
 </html>
