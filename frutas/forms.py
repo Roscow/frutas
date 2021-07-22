@@ -1,7 +1,7 @@
 
 from django import forms
 from .models import Fruta
-
+from django.db import models
 
 class create_fruta(forms.ModelForm):
     class Meta:
@@ -29,4 +29,8 @@ class create_fruta(forms.ModelForm):
             ),
         } 
 
+
+class uploadImageForm(forms.Form):
+    file = forms.FileField(required=False)
+    
 

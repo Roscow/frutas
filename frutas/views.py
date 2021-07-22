@@ -11,13 +11,100 @@ from django.urls import reverse
 from .forms import create_fruta
 from django.utils import timezone
 import pymysql
+from .forms import uploadImageForm
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
+
 # Create your views here.
+def obtener_avatar(id_usuario):
+    conn = pymysql.connect(host='127.0.0.1', user=os.getenv('db_user'), password=os.getenv('db_pass'), database=os.getenv('db_name'), charset='utf8')
+    cur = conn.cursor()
+    #dato = cur.callproc("obtener_avatar_provider", (id_usuario,))
+    sentencia_sql = "SELECT obtener_avatar_provider(%s)",(id_usuario)
+    cur.execute(
+        "SELECT obtener_avatar_provider(%s)",(id_usuario)
+        )
+    dato = cur.fetchone()    
+    conn.close()      
+    return dato[0]
+
+def actualizar_foto(request):
+    conn = pymysql.connect(host='127.0.0.1', user=os.getenv('db_user'), password=os.getenv('db_pass'), database=os.getenv('db_name'), charset='utf8')
+    cur = conn.cursor()
+    cur.callproc("actualizar_foto", (request.user.id,))
+    conn.commit()
+    conn.close()
+    #return render(request,'frutas/perfil_usuario.html')    
+    return perfil_usuario(request)
 
 
+
+def perfil_usuario(request):
+    if request.method == 'POST':  
+        if(request.POST.get('accion')=='eliminar_usuario' ):
+                usuario_obj2 = Usuario.objects.get(id = request.POST.get('id_usuario') )
+                #borrar log usuario
+                log_usuario_obj= LogUsuarios.objects.filter(usuario_emisor=usuario_obj2)
+                for lu in log_usuario_obj:
+                    lu.delete()  
+
+                #borrar comparaciones 
+                comparaciones_usuario_obj = ComparacionFrutas.objects.filter(usuario=usuario_obj2)
+                for cu in comparaciones_usuario_obj:
+                    cu.delete()
+
+                #borrar ultima preferencia
+                ultimapref_usuario_obj = UltimaPreferencia.objects.filter(usuario=usuario_obj2)
+                for up in ultimapref_usuario_obj:
+                    up.delete() 
+                
+                #borrar preferencias usuarios 
+                pref_usuario_obj = PreferenciasFrutas.objects.filter(usuario=usuario_obj2)
+                for pu in pref_usuario_obj:
+                    pu.delete() 
+
+                #borrar usuario
+                usuario_obj2.delete()  
+                #cerrar sesion 
+                #eliminar cuenta
+                #redirigir a inicio
+                return HttpResponseRedirect('/frutas/1/')            
+                #return HttpResponseRedirect(reverse{% url 'logout' %}"
+        else:
+            usuario_obj = Usuario.objects.get(id=request.user.id)
+            if (request.POST.get('region') != ''):
+                region_obj = Region.objects.get(id = request.POST.get('region'))
+                usuario_obj.region = region_obj
+            if (request.POST.get('genero') != ''):
+                genero_obj = Genero.objects.get(id = request.POST.get('genero'))
+                usuario_obj.genero = genero_obj 
+            #form = uploadImageForm(request.POST, request.FILES)
+            if (request.FILES.get('file')==None):
+                usuario_obj.imagen_avatar = (request.POST.get('exampleRadios'))
+            else:
+                def handle_upload_file(f):
+                    with open('media/' + str(request.FILES['file']) , 'wb+') as destination:
+                        for chunk in f.chunks():
+                            destination.write(chunk)   
+                archivo_path= '/media/'+  str(request.FILES.get('file'))
+                handle_upload_file(request.FILES['file'])
+                usuario_obj.imagen_avatar = archivo_path                           
+            usuario_obj.nombre= request.POST.get('nombre')
+            usuario_obj.save()
+            
+        
+    avatar_provider = str(obtener_avatar(request.user.id))
+    regiones_list = Region.objects.all().order_by('nombre')
+    genero_list = Genero.objects.all()
+    usuario_object = Usuario.objects.get(id=request.user.id)
+    por_completar_list =list()
+    if usuario_object.genero == None:
+        por_completar_list.append('Indicar genero')
+    context = {'regiones_list':regiones_list, 'genero_list':genero_list, 'por_completar_list':por_completar_list, 'uploadImageForm':uploadImageForm, 'avatar_provider':avatar_provider}
+    return render(request,'frutas/agregar_imagen.html', context)   
+    
 
 def index(request):
     #return render(request,'frutas/base.html')
@@ -78,14 +165,6 @@ def faltantes(request):
     return render(request,'frutas/faltantes.html')
 
 
-def actualizar_foto(request):
-    conn = pymysql.connect(host='127.0.0.1', user=os.getenv('db_user'), password=os.getenv('db_pass'), database=os.getenv('db_name'), charset='utf8')
-    cur = conn.cursor()
-    cur.callproc("actualizar_foto", (request.user.id,))
-    conn.commit()
-    conn.close()
-    #return render(request,'frutas/perfil_usuario.html')    
-    return perfil_usuario(request)
 
 
 def versus(request):
@@ -223,7 +302,7 @@ def administracion_frutas(request):
         return render(request,'frutas/administracion_frutas.html')
 
 
-def perfil_usuario(request):
+""" def perfil_usuario(request):
     if request.method == 'POST':        
         if(request.POST.get('accion')=='eliminar_usuario' ):
                 usuario_obj2 = Usuario.objects.get(id = request.POST.get('id_usuario') )
@@ -273,7 +352,7 @@ def perfil_usuario(request):
         por_completar_list.append('Indicar genero')
     context = {'regiones_list':regiones_list, 'genero_list':genero_list, 'por_completar_list':por_completar_list}
     return render(request,'frutas/perfil_usuario.html', context)    
-
+ """
 
 def estadisticas_inicio(request):
     #obtener el ultimo valor de la tabla 
@@ -313,4 +392,5 @@ def frutas_inicio(request,page):
         return render(request,'frutas/frutas.html',context)
     except Usuario.DoesNotExist:
         return render(request,'frutas/frutas.html')
+
 

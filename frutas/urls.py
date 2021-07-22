@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf.urls.static import static 
+from django.conf import settings
 
 app_name= 'frutas1'
 urlpatterns = [
@@ -16,4 +18,8 @@ urlpatterns = [
     path('administracion_frutas/', views.administracion_frutas, name='administracion_frutas'),   
     path('perfil_usuario/', views.perfil_usuario, name='perfil_usuario'),   
     path('actualizar_foto/', views.actualizar_foto, name='actualizar_foto'),   
+     
 ] 
+
+if settings.DEBUG:
+    urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
