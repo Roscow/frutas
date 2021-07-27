@@ -12,7 +12,15 @@
                 <li class="list-group-item"> sigue actualizando tu ranking en  <a href="{% url 'frutas1:versus' %}"><span class="badge bg-info text-dark">Versus</span></a> 
                     o agrega frutas nuevas <a href="{% url 'frutas1:agregar_fruta' %}"><span class="badge bg-info text-dark">aca</span> </a> 
                 </li>
+
+                <li class="list-group-item"> 
+                    <button type="button"  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Reiniciar ranking
+                    </button>                    
+                </li>
+                
             </ol>
+           
 
 
         {% else %}
@@ -28,5 +36,30 @@
             debe estar conectado para ver esta opcion
     {% endif %}
 
+
+    <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Borrar registro de preferencias</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">      
+          Se borraran todos las comparaciones y preferencias de frutas, esta accion no se puede deshacer.<br> ¿desea continuar?
+        </div>
+        <div class="modal-footer">
+               <form class="my-4 post-form" action="" method="POST">
+                  {% csrf_token %}                  
+                  <input type="hidden"  name="id_usuario" value="{{usuario_conectado.id}}">  
+                  <input type="hidden"  name="accion" value="eliminar_ranking">
+                 
+                      <button type="submit" class="btn btn-outline-danger">Borrar preferencias</button>             
+              </form>        
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

@@ -131,6 +131,24 @@ def agregar_fruta(request):
 
 
 def ranking(request):
+    if request.method == 'POST':     
+        if request.POST.get('accion')== 'eliminar_ranking' :               
+            usuario_obj2 = Usuario.objects.get(id = request.POST.get('id_usuario') )
+
+            #borrar comparaciones 
+            comparaciones_usuario_obj = ComparacionFrutas.objects.filter(usuario=usuario_obj2)
+            for cu in comparaciones_usuario_obj:
+                cu.delete()
+
+            #borrar ultima preferencia
+            ultimapref_usuario_obj = UltimaPreferencia.objects.filter(usuario=usuario_obj2)
+            for up in ultimapref_usuario_obj:
+                up.delete() 
+
+            #borrar preferencias usuarios 
+            pref_usuario_obj = PreferenciasFrutas.objects.filter(usuario=usuario_obj2)
+            for pu in pref_usuario_obj:
+                pu.delete() 
     return render(request,'frutas/ranking.html')
 
 
