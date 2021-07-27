@@ -40,15 +40,6 @@ def actualizar_foto(request):
     return perfil_usuario(request)
 
 
-def revision_ultima_frutas(id_usuario):
-    conn = pymysql.connect(host='127.0.0.1', user=os.getenv('db_user'), password=os.getenv('db_pass'), database=os.getenv('db_name'), charset='utf8')
-    cur = conn.cursor()
-    cur.callproc("buscar_ultima_preferencia", (id_usuario,))
-    conn.commit()
-    conn.close()    
-
-
-
 def perfil_usuario(request):
     if request.method == 'POST':  
         if(request.POST.get('accion')=='eliminar_usuario' ):
@@ -215,8 +206,7 @@ def versus(request):
     comparacion_valida=False
     contador_novalidas=0
     while comparacion_valida==False:
-        if(contador_novalidas==20):
-            revision_ultima_frutas(user_id)
+        if(contador_novalidas==20):           
             return render(request,'frutas/versus.html')
 
         num1=random.randint(0, (total_frutas_validas-1))
