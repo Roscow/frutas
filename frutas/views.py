@@ -224,8 +224,37 @@ def versus(request):
     comparacion_valida=False
     contador_novalidas=0
     while comparacion_valida==False:
-        if(contador_novalidas==20):           
+        if(contador_novalidas==20):  
+            # REALIZAR BUSQUEDA DE LA FRUTA QUE QUEDA HUERFANA EN PREFERENCIAS
+            usuario_obj = Usuario.objects.get(id=user_id)
+            #primero revisar cuales son las frutas que tiene el usuario en preferencias
+            frutas_de_usuario = list()
+            preferencias_usuario = PreferenciasFrutas.objects.filter(usuario=user_id)
+            max_ranking = PreferenciasFrutas.objects.filter(usuario=user_id).exclude(ranking_valor__isnull=True).count()
+            for pu in preferencias_usuario:
+                frutas_de_usuario.append(pu.fruta)
+            #despues comparar cuales son las frutas que estan disponibles para hacer versus 
+            estado_fruta = EstadoFruta.objects.get(nombre__icontains='aprobado')
+            frutas_disponibles = Fruta.objects.filter(estado_fruta= estado_fruta.id )
+            frutas_sin_preferencias = list()
+
+            for e in frutas_disponibles:
+                if ( (e in frutas_de_usuario)==False ):
+                    frutas_sin_preferencias.append(e)
+
+            total_de_frutas = frutas_disponibles.count()
+            total_frutas_usuario = len(frutas_de_usuario)
+
+            #verificar que exista solo una fruta de diferencia entre ambas listas 
+            #ver cual es la fruta que no esta en la lista 
+            if ( len(frutas_sin_preferencias)==1 ):
+                #verifico que esa fruta tenga comparaciones del usuario 
+                comparaciones = ComparacionFrutas.objects.filter(usuario=user_id)
+                if ( comparaciones.count()>0 ):
+                    #registro la preferencia 
+                    PreferenciasFrutas.objects.create(usuario=usuario_obj, fruta= frutas_sin_preferencias[0], ranking_valor=(max_ranking+1) )                    
             return render(request,'frutas/versus.html')
+
 
         num1=random.randint(0, (total_frutas_validas-1))
         num2=random.randint(0, (total_frutas_validas-1))
